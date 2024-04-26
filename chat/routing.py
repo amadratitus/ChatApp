@@ -1,8 +1,8 @@
 # chat/routing.py
-from django.urls import re_path
+from django.urls import path, include
+from .consumer import ChatConsumer
 
-from . import consumers
-
+# the empty string routes to ChatConsumer, which manages the chat functionality.
 websocket_urlpatterns = [
-    re_path(r"ws/chat/(?P<room_name>\w+)/$", consumers.ChatConsumer.as_asgi()),
+    path("", ChatConsumer.as_asgi()),
 ]
